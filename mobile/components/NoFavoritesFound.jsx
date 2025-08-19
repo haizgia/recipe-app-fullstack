@@ -4,7 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "@/constants/colors";
 import { favoritesStyles } from "@/assets/styles/favorites.styles";
 
-function NoFavoritesFound() {
+function NoFavoritesFound({text = "favorites"}) {
   const router = useRouter();
 
   return (
@@ -12,7 +12,7 @@ function NoFavoritesFound() {
       <View style={favoritesStyles.emptyIconContainer}>
         <Ionicons name="heart-outline" size={80} color={COLORS.textLight} />
       </View>
-      <Text style={favoritesStyles.emptyTitle}>No favorites yet</Text>
+      <Text style={favoritesStyles.emptyTitle}>No {text} yet</Text>
       <TouchableOpacity style={favoritesStyles.exploreButton} onPress={() => router.push("/")}>
         <Ionicons name="search" size={18} color={COLORS.white} />
         <Text style={favoritesStyles.exploreButtonText}>Explore Recipes</Text>

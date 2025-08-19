@@ -4,14 +4,21 @@ import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import { COLORS } from "../constants/colors";
 import { recipeCardStyles } from "../assets/styles/home.styles";
+import { useDispatch } from 'react-redux';
+import { addRecent } from '../features/recentSlice';
 
 export default function RecipeCard({ recipe }) {
   const router = useRouter();
+  const dispatch = useDispatch();
+  const onOpenDetail = () => {
+    dispatch(addRecent(recipe));
+    router.push(`/recipe/${recipe.id}`)
+  }
 
   return (
     <TouchableOpacity
       style={recipeCardStyles.container}
-      onPress={() => router.push(`/recipe/${recipe.id}`)}
+      onPress={onOpenDetail}
       activeOpacity={0.8}
     >
       <View style={recipeCardStyles.imageContainer}>
